@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <title>Plato Cat</title>
+  </head>
+  <body>
+    <div class="wrapper" id="main">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col text-right" id="moreCatsRow">
+            <a id="moreCatsAnchor" target="_blank">
+              <span id="moreCats">
+                Meow energy
+              </span>
+              <img src="/img/morecats.png" width="75px" height="75px" class="img-responsive">
+            </a>
+          </div>
+        </div>
+        <div class="row" id="catImage">
+          <div class="col text-center">
+            <img class="img-fluid" id="catImageImg">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <h3 id="caption"></h3>
+          </div>
+        </div>
+        <div class="row fixed-bottom" id="mostVisited">
+          <div class="col-8 offset-2">
+            <div class="row" id="mostVisitedRow"></div>
+          </div>
+        </div>
+      </div>
+      <img id="hiddenImage" hidden>
+    </div>
+    
+    <script src="/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="/js/lodash.min.js"></script>
+    <script src="/js/preload.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
