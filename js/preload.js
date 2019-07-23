@@ -88,7 +88,7 @@ chrome.topSites.get(data => {
   sites.map(site => {
     elems += `
       <div class="col" v-for="site in topSites">
-        <a href="site" target="_blank">
+        <a href="${site}" target="_blank">
           <img src="chrome://favicon/size/35/${site}">
         </a>
       </div>
