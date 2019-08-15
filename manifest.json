@@ -18,10 +18,12 @@
     "topSites",
     "chrome://favicon/",
     "storage",
-    "unlimitedStorage"
+    "unlimitedStorage",
+    "https://www.google-analytics.com/"
   ],
   "background": {
     "scripts": [
+      "js/google-analytics-bundle.js",
       "js/background.js"
     ],
     "persistent": false

@@ -39,4 +39,16 @@ let convertBlobToBase64 = blob => new Promise((resolve, reject) => {
   });
 })();
 
+let service = analytics.getService('platocat_extension');
+
+let tracker = service.getTracker('UA-144199659-2');
+
+chrome.runtime.onInstalled.addListener(details => {
+  if (details.reason == 'install') {
+    console.log('This is the first install');
+
+    tracker.sendEvent('Install', 'Install', 'Install');
+  }
+});
+
 console.log('It works');
