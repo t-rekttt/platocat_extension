@@ -23,6 +23,7 @@
   ],
   "background": {
     "scripts": [
+      "js/lodash.min.js",
       "js/google-analytics-bundle.js",
       "js/background.js"
     ],

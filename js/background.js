@@ -19,9 +19,15 @@ let convertBlobToBase64 = blob => new Promise((resolve, reject) => {
 });
 
 (async() => {
-  let images = await getAllImages();
+  // chrome.browserAction.setBadgeText({ text: "..." });
+
+  let images = _.shuffle(await getAllImages());
 
   chrome.storage.local.get(null, async chromeStorageData => {
+    let imagesCount = (Object.keys(chromeStorageData).length - 1) || 0;
+
+    // chrome.browserAction.setBadgeText({ text: imagesCount + '' });
+
     for (image of images) {
       let id = image._id;
 
@@ -29,12 +35,17 @@ let convertBlobToBase64 = blob => new Promise((resolve, reject) => {
 
       let req = await fetchAsBlob(`${chrome.runtime.getManifest().homepage_url}/storage/${image.media}`)
       let base64 = await convertBlobToBase64(req);
+
       chrome.storage.local.set({ 
         [id]: {
           ...image,
           media: base64
         } 
-      }, () => console.log(id));
+      }, () => {
+        console.log(id);
+
+        // chrome.browserAction.setBadgeText({ text: (++imagesCount) + '' });
+      });
     }
   });
 })();

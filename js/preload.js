@@ -3,6 +3,8 @@ let getRandomImage = async(lastIds) => {
     chrome.storage.local.get(null, chromeStorageData => {
       let images = Object.values(chromeStorageData);
 
+      images = images.filter(image => typeof image == 'object' && image && image._id);
+
       resolve(
         _.sample(
           _.differenceWith(images, lastIds, (image, id) => {
