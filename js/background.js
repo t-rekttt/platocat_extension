@@ -58,6 +58,8 @@ chrome.runtime.onInstalled.addListener(details => {
   if (details.reason == 'install') {
     console.log('This is the first install');
 
+    chrome.tabs.create({ url: `${chrome.runtime.getManifest().homepage_url}/thank-you` });
+
     tracker.sendEvent('Install', 'Install', 'Install');
   }
 });
