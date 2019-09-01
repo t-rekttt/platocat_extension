@@ -1,3 +1,9 @@
+let service = analytics.getService('platocat_extension');
+
+let tracker = service.getTracker('UA-144199659-2');
+
+tracker.sendEvent('pageview');
+
 let getRandomImage = async(lastIds) => {
   return new Promise(resolve => {
     chrome.storage.local.get(null, chromeStorageData => {
@@ -62,6 +68,7 @@ let hiddenImg = document.querySelector('#hiddenImage');
 let main = document.querySelector('#main');
 let caption = document.querySelector('#caption');
 document.querySelector('#moreCatsAnchor').href = chrome.runtime.getManifest().homepage_url;
+console.log(analytics);
 
 chooseRandomImage().then(async json => {
   caption.innerText = _.sample(json.captions);
