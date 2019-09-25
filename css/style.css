@@ -6,6 +6,19 @@
   margin-bottom: 1vh;
 }
 
+#notificationDiv {
+  background-color: #EE4423;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  position: absolute;
+  left: -9px;
+  bottom: 0;
+  border: 1.2px solid #fff;
+  color: white;
+  font-size: 16px;
+}
+
 #moreCats {
   font-size: 20px;
   font-family: Nunito;
@@ -14,7 +27,9 @@
 }
 
 #moreCatsRow {
-  margin-top: 5vh;
+  margin-top: 10vh;
+  position: relative;
+  display: inline-block;
 }
 
 #moreCatsAnchor:hover {

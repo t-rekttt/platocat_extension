@@ -63,6 +63,17 @@ let chooseRandomImage = async() => {
   return json;
 }
 
+let getFeedPostsCount = async() => {
+  return fetch(`${chrome.runtime.getManifest().homepage_url}/api/post/count`)
+    .then(res => res.json())
+    .then(json => json.data);
+}
+
+let resetNotificationCount = () => {
+  chrome.storage.local.set({ notificationCount: 0 });
+  document.querySelector('#notificationDiv').hidden = true;
+}
+
 let img = document.querySelector('#catImageImg');
 let hiddenImg = document.querySelector('#hiddenImage');
 let main = document.querySelector('#main');
@@ -105,4 +116,42 @@ chrome.topSites.get(data => {
   });
 
   $('#mostVisitedRow').append($(elems));
+});
+
+chrome.storage.local.get(['lastPostsCount', 'notificationCount'], async data => {
+  try {
+    if (data.notificationCount && typeof data.notificationCount == 'number') {
+      let notificationElem = document.querySelector('#notificationDiv');
+
+      notificationElem.innerText = data.notificationCount;
+      notificationElem.hidden = false;
+    }
+
+    let count = (await getFeedPostsCount()).count;
+
+    if (typeof count != 'number') return;
+
+    if (!data.notificationCount) data.notificationCount = 0;
+
+    if (data.lastPostsCount) data.notificationCount += count - data.lastPostsCount;
+
+    if (data.notificationCount && typeof data.notificationCount == 'number') {
+      let notificationElem = document.querySelector('#notificationDiv');
+
+      notificationElem.innerText = data.notificationCount;
+      notificationElem.hidden = false;
+    }
+
+    data.lastPostsCount = count;
+
+    chrome.storage.local.set(data, () => {
+      console.log(data);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('moreCatsAnchor').addEventListener("click", resetNotificationCount);
 });
