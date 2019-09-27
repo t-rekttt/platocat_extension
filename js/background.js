@@ -64,4 +64,6 @@ chrome.runtime.onInstalled.addListener(details => {
   }
 });
 
+chrome.runtime.setUninstallURL(`${chrome.runtime.getManifest().homepage_url}/uninstall`);
+
 console.log('It works');
